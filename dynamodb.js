@@ -61,7 +61,7 @@ module.exports = {
     },
 
     save_app_data: function(app_data,cb){
-        var app_data = JSON.parse(app_data);
+        // var app_data = JSON.parse(app_data);
         var params = {
             TableName : user_table,
             Item : {
@@ -100,9 +100,7 @@ module.exports = {
                         ExpressionAttributeValues: {
                             ":ras_id": { S: data.Item.ras_id }
                         },
-                        KeyConditionExpression : "ras_id = :ras_id",
-                        "ScanIndexForward":false,
-                        "Limit" : 1,
+                        KeyConditionExpression : "ras_id = :ras_id"
                     }
                     dynamodb.query(params, function(err, data) {
                         if (err) {
