@@ -19,9 +19,19 @@ router.get('/app/get_data/:id',function(req,res,next){
     })
 })
 
+router.post('/app/get_diff_data',function(req,res,next){
+    var body = req.body;
+    console.log(body);
+    dynamo_access.get_diff_data(body,function(response){
+        console.log(response)
+        res.status(200).json(response)
+    })
+})
+
+
 router.post('/pi/save_data',function(req,res,next){
     var body = req.body;
-    console.log(body)
+    console.log(body);
     dynamo_access.save_pi_data(body,function(response){
         console.log(response)
         if(response == true) res.status(200).json("Success")
