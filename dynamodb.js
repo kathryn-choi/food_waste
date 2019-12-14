@@ -18,7 +18,9 @@ function get_last_weight(ras_id,cb){
             }
         },
         KeyConditionExpression : "ras_id = :ras_id",
-        "ScanIndexForward":false
+        "ScanIndexForward":false,
+        "Limit" : 1,
+
     }
     dynamodb.query(params, function(err, data) {
         if (err) {
