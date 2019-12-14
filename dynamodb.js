@@ -39,15 +39,20 @@ module.exports = {
             console.log(last_weight)
             var diff_weight = pi_data.weight - last_weight;
             if(diff_weight < 0) diff_weight = 0;
+            console.log(pi_data.date)
+            var date = new Date(pi_data.date)
+            date = date.getTime().toString()
+            
             var params = {
                 TableName : pi_table,
                 Item : {
                     "ras_id" : pi_data.ras_id,
-                    "save_date" : pi_data.date.toString(),
+                    "save_date" :date,
                     "weight" : pi_data.weight,
                     "diff" : diff_weight
                 }
             }
+            console.log(params)
             docClient.put(params, function(err, data) {
                 if (err) {
                     console.error("Unable to add item. Error JSON:", JSON.stringify(err, null, 2));
